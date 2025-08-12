@@ -1,11 +1,14 @@
 import { httpsCallable } from 'firebase/functions';
-import { ref, getDownloadURL } from 'firebase/storage';
-import { functions, storage } from '../../firebaseConfig';
+import { functions } from '../../firebaseConfig';
 
 export async function createTicket({ ownerUid, type, price, validUntilMillis }) {
   const callable = httpsCallable(functions, 'createTicket');
   const { data } = await callable({ ownerUid, type, price, validUntilMillis });
-  const { ticketId, qrStoragePath } = data;
-  const url = await getDownloadURL(ref(storage, qrStoragePath));
-  return { ticketId, qrStoragePath, qrUrl: url };
+  return data; // { ok, ticketId }
+}
+
+export async function validateTicket(ticketId) {
+  const callable = httpsCallable(functions, 'validateTicket');
+  const { data } = await callable({ ticketId });
+  return data; // { ok: true }
 }

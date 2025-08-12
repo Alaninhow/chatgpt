@@ -1,0 +1,76 @@
+[debug] [2025-08-12T05:14:35.199Z] ----------------------------------------------------------------------
+[debug] [2025-08-12T05:14:35.202Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\neutz\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2025-08-12T05:14:35.202Z] CLI Version:   14.12.0
+[debug] [2025-08-12T05:14:35.202Z] Platform:      win32
+[debug] [2025-08-12T05:14:35.202Z] Node Version:  v22.18.0
+[debug] [2025-08-12T05:14:35.202Z] Time:          Tue Aug 12 2025 02:14:35 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-08-12T05:14:35.203Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-12T05:14:35.409Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-12T05:14:35.409Z] > authorizing via signed-in user (neutzalan1@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\neutz\Downloads\app\park
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-08-12T05:14:37.254Z] Using project from CLI flag: recanto-davet
+[debug] [2025-08-12T05:14:37.255Z] Checked if tokens are valid: true, expires at: 1754979163751
+[debug] [2025-08-12T05:14:37.255Z] Checked if tokens are valid: true, expires at: 1754979163751
+[debug] [2025-08-12T05:14:37.256Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/recanto-davet [none]
+[debug] [2025-08-12T05:14:37.717Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/recanto-davet 200
+[debug] [2025-08-12T05:14:37.717Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/recanto-davet {"projectId":"recanto-davet","projectNumber":"235509008499","displayName":"recanto-davet","name":"projects/recanto-davet","resources":{"hostingSite":"recanto-davet","realtimeDatabaseInstance":"recanto-davet-default-rtdb"},"state":"ACTIVE","etag":"1_2f4bac1e-a63f-42c5-8b38-203eff886127"}
+[info] i  Using project recanto-davet (recanto-davet) 
+[info] 
+=== Functions Setup
+[debug] [2025-08-12T05:14:37.885Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-12T05:14:37.885Z] > authorizing via signed-in user (neutzalan1@gmail.com)
+[debug] [2025-08-12T05:14:37.885Z] [iam] checking project recanto-davet for permissions ["firebase.projects.get"]
+[debug] [2025-08-12T05:14:37.885Z] Checked if tokens are valid: true, expires at: 1754979163751
+[debug] [2025-08-12T05:14:37.885Z] Checked if tokens are valid: true, expires at: 1754979163751
+[debug] [2025-08-12T05:14:37.885Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/recanto-davet:testIamPermissions [none]
+[debug] [2025-08-12T05:14:37.885Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/recanto-davet:testIamPermissions x-goog-quota-user=projects/recanto-davet
+[debug] [2025-08-12T05:14:37.885Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/recanto-davet:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-08-12T05:14:38.731Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/recanto-davet:testIamPermissions 200
+[debug] [2025-08-12T05:14:38.732Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/recanto-davet:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+Detected existing codebase(s): default
+
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
+[debug] [2025-08-12T05:15:11.117Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (C:\Users\neutz\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@inquirer\core\dist\commonjs\lib\create-prompt.js:101:37)
+    at Interface.emit (node:events:518:28)
+    at Interface.emit (node:domain:489:12)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1132:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:271:20)
+    at ReadStream.emit (node:events:530:35)
+    at ReadStream.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:370:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+[error] 
+[error] Error: An unexpected error has occurred.

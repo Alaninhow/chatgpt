@@ -6,31 +6,21 @@ import { signOut } from 'firebase/auth';
 export default function AccountScreen() {
   const user = auth.currentUser;
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      Alert.alert('Sucesso', 'Você saiu da conta');
-    } catch (error) {
-      Alert.alert('Erro', error.message);
-    }
-  };
+  async function handleLogout() {
+    try { await signOut(auth); Alert.alert('Você saiu'); }
+    catch(e){ Alert.alert('Erro', e.message); }
+  }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Minha Conta</Text>
+    <View style={s.c}>
+      <Text style={s.t}>Minha Conta</Text>
       {user ? (
         <>
-          <Text>Email: {user.email}</Text>
+          <Text style={{ marginVertical: 8 }}>Email: {user.email}</Text>
           <Button title="Sair" onPress={handleLogout} />
         </>
-      ) : (
-        <Text>Você não está logado</Text>
-      )}
+      ) : <Text>Você não está logado</Text>}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  title: { fontSize: 22, fontWeight: 'bold', marginBottom: 20 },
-});
+const s = StyleSheet.create({ c:{flex:1,justifyContent:'center',alignItems:'center',padding:20}, t:{fontSize:22,fontWeight:'700',marginBottom:12} });

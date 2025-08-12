@@ -1,32 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const handleLogin = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email, senha);
-    } catch (error) {
-      Alert.alert('Erro', error.message);
-    }
-  };
+  async function onLogin() {
+    try { await signInWithEmailAndPassword(auth, email.trim(), senha); }
+    catch (e) { Alert.alert('Erro', e.message); }
+  }
+  async function onRegister() {
+    try { await createUserWithEmailAndPassword(auth, email.trim(), senha); }
+    catch (e) { Alert.alert('Erro', e.message); }
+  }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
-      <TextInput style={styles.input} placeholder="Senha" secureTextEntry value={senha} onChangeText={setSenha} />
-      <Button title="Entrar" onPress={handleLogin} />
+    <View style={s.c}>
+      <Text style={s.t}>Login</Text>
+      <TextInput style={s.i} placeholder="email" autoCapitalize="none" onChangeText={setEmail} value={email} />
+      <TextInput style={s.i} placeholder="senha" secureTextEntry onChangeText={setSenha} value={senha} />
+      <Button title="Entrar" onPress={onLogin} />
+      <View style={{ height: 8 }} />
+      <Button title="Criar conta" onPress={onRegister} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
-  input: { borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 15, borderRadius: 5 },
-});
+const s = StyleSheet.create({ c:{flex:1,justifyContent:'center',padding:20}, t:{fontSize:22,fontWeight:'700',marginBottom:12}, i:{borderWidth:1,padding:10,marginBottom:10,borderRadius:6} });
