@@ -1,39 +1,43 @@
+// src/screens/PortariaScreen.js (fallback sem câmera)
 import React from 'react';
-import { View, Text, Button, Alert } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { validateTicket } from '../services/tickets';
 
 export default function PortariaScreen() {
-  const [hasPerm, setHasPerm] = React.useState(null);
-  const [scanning, setScanning] = React.useState(false);
+  const [ticketId, setTicketId] = React.useState('');
 
-  React.useEffect(() => {
-    BarCodeScanner.requestPermissionsAsync().then(({ status }) => setHasPerm(status === 'granted'));
-  }, []);
-
-  async function onScan({ data }) {
+  async function onValidate() {
     try {
-      setScanning(false);
-      const payload = JSON.parse(data); // { ticketId }
-      await validateTicket(payload.ticketId);
+      if (!ticketId.trim()) return Alert.alert('Atenção', 'Digite um ticketId.');
+      await validateTicket(ticketId.trim());
       Alert.alert('Sucesso', 'Ticket válido. Entrada liberada!');
+      setTicketId('');
     } catch (e) {
       Alert.alert('Falha', e.message || 'Ticket inválido/expirado/ja usado.');
     }
   }
 
-  if (hasPerm === null) return <Text>Solicitando permissão...</Text>;
-  if (!hasPerm) return <Text>Sem permissão de câmera.</Text>;
-
   return (
-    <View style={{ flex:1 }}>
-      {scanning ? (
-        <BarCodeScanner onBarCodeScanned={onScan} style={{ flex: 1 }} />
-      ) : (
-        <View style={{ flex:1, alignItems:'center', justifyContent:'center' }}>
-          <Button title="Ler QR" onPress={() => setScanning(true)} />
-        </View>
-      )}
+    <View style={s.c}>
+      <Text style={s.t}>Validação Manual</Text>
+      <Text style={{ color:'#666', marginBottom: 8 }}>Digite o ticketId (ou cole do QR):</Text>
+      <TextInput
+        style={s.i}
+        placeholder="ex: 5a4e1f4c-...."
+        value={ticketId}
+        onChangeText={setTicketId}
+        autoCapitalize="none"
+      />
+      <Button title="Validar" onPress={onValidate} />
+      <Text style={{ color:'#666', marginTop: 16 }}>
+        Depois que a câmera estiver ok, voltamos ao leitor de QR.
+      </Text>
     </View>
   );
 }
+
+const s = StyleSheet.create({
+  c:{ flex:1, padding:20, justifyContent:'center' },
+  t:{ fontSize:22, fontWeight:'700', marginBottom:12 },
+  i:{ borderWidth:1, borderColor:'#ccc', borderRadius:6, padding:10, marginBottom:12 }
+});
