@@ -1,20 +1,17 @@
-// firebaseConfig.js
+// Raiz do projeto: firebaseConfig.js
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyDorgEMS377QYGtOI37IxFEeUvyshThiVI",
-  authDomain: "recanto-davet.firebaseapp.com",
-  databaseURL: "https://recanto-davet-default-rtdb.firebaseio.com",
-  projectId: "recanto-davet",
-  storageBucket: "recanto-davet.firebasestorage.app",
-  messagingSenderId: "235509008499",
-  appId: "1:235509008499:web:a6bb458cf251be9adc0206"
+  apiKey: 'SUA_API_KEY',
+  authDomain: 'SEU_AUTH_DOMAIN',
+  projectId: 'SEU_PROJECT_ID',
+  storageBucket: 'SEU_BUCKET',
+  messagingSenderId: 'SEU_SENDER_ID',
+  appId: 'SEU_APP_ID',
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
